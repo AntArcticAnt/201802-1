@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>珠峰培训架构2期</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        
+            珠峰培训架构2期
+        
+    </div>
+<ul><li><a href="../index.html">0.es6</a></li><li><a href="../html/1.async.html">1.async</a></li><li><a href="../html/2.async.html">2.async</a></li><li><a href="../html/3.async.html">3.async</a></li><li><a href="../html/4.node.html">4.node</a></li><li><a href="../html/5.nodeInstall.html">5.nodeInstall</a></li><li><a href="../html/6.REPL.html">6.REPL</a></li><li><a href="../html/7.global.html">7.global</a></li><li><a href="../html/8.module&NPM.html">8.module&NPM</a></li><li><a href="../html/9.NodeCore.html">9.NodeCore</a></li><li><a href="../html/10.Encoding.html">10.Encoding</a></li><li><a href="../html/11.Buffer.html">11.Buffer</a></li><li><a href="../html/12.fs.html">12.fs</a></li><li><a href="../html/13.Stream-1.html">13.Stream-1</a></li><li><a href="../html/14.Stream-2.html">14.Stream-2</a></li><li><a href="../html/15.Stream-3.html">15.Stream-3</a></li><li><a href="../html/16.Stream-4.html">16.Stream-4</a></li><li><a href="../html/17.tcp.html">17.tcp</a></li><li><a href="../html/18.http-1.html">18.http-1</a></li><li class="active"><a href="../html/19.yargs.html">19.yargs</a></li><li><a href="../html/20.action.html">20.action</a></li></ul></div>
+
+
+<div class="warpper">
+
+    <div class="page-toc">
+        <ul><li><a href="#t01. yargs">1. yargs</a><ul><li><a href="#t11.1 安装">1.1 安装</a></li><li><a href="#t21.2 读取命令行参数">1.2 读取命令行参数</a></li><li><a href="#t31.3 还可以指定别名">1.3 还可以指定别名</a></li><li><a href="#t41.4 下划线属性">1.4 下划线属性</a></li><li><a href="#t51.5 命令行参数的配置">1.5 命令行参数的配置</a></li><li><a href="#t61.6 帮助信息">1.6 帮助信息</a></li></ul></li></ul>
+    </div>
+    
+    <div class="content markdown-body">
+        <h2 id="t01. yargs">1. yargs <a href="#t01. yargs"> # </a></h2>
+<p>yargs&#x6A21;&#x5757;&#x80FD;&#x591F;&#x89E3;&#x51B3;&#x5982;&#x4F55;&#x5904;&#x7406;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x3002;</p>
+<h3 id="t11.1 &#x5B89;&#x88C5;">1.1 &#x5B89;&#x88C5; <a href="#t11.1 &#x5B89;&#x88C5;"> # </a></h3>
+<pre><code class="lang-javascript">npm install yargs --save
+</code></pre>
+<h3 id="t21.2 &#x8BFB;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;">1.2 &#x8BFB;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570; <a href="#t21.2 &#x8BFB;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;"> # </a></h3>
+<p>yargs&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;argv&#x5BF9;&#x8C61;&#xFF0C;&#x7528;&#x6765;&#x8BFB;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;</p>
+<pre><code class="lang-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>).argv;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello &apos;</span>,argv.name);
+</code></pre>
+<pre><code class="lang-javascript">hello --name=zfpx
+hello --name zfpx
+</code></pre>
+<blockquote>
+<p>process.argv</p>
+<pre><code>[ &apos;/usr/local/bin/node&apos;, &apos;/usr/local/bin/hello4&apos;, &apos;--name=zfpx&apos; ]
+</code></pre><p>argv</p>
+<pre><code>{
+  name: &apos;zfpx&apos;,
+}
+</code></pre></blockquote>
+<h3 id="t31.3 &#x8FD8;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x522B;&#x540D;">1.3 &#x8FD8;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x522B;&#x540D; <a href="#t31.3 &#x8FD8;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x522B;&#x540D;"> # </a></h3>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>)
+.alias(<span class="hljs-string">&apos;n&apos;</span>,<span class="hljs-string">&apos;name&apos;</span>)
+.argv
+</code></pre>
+<pre><code class="lang-javascript">hello -n zfpx
+hello --name zfpx
+</code></pre>
+<h3 id="t41.4 &#x4E0B;&#x5212;&#x7EBF;&#x5C5E;&#x6027;">1.4 &#x4E0B;&#x5212;&#x7EBF;&#x5C5E;&#x6027; <a href="#t41.4 &#x4E0B;&#x5212;&#x7EBF;&#x5C5E;&#x6027;"> # </a></h3>
+<p>argv&#x5BF9;&#x8C61;&#x6709;&#x4E00;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x975E;&#x8FDE;&#x8BCD;&#x7EBF;&#x5F00;&#x5934;&#x7684;&#x53C2;&#x6570;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>).argv
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello &apos;</span>,argv.n);
+<span class="hljs-built_in">console</span>.log(argv._);
+</code></pre>
+<pre><code class="lang-javascript">hello A -n zfpx B C
+hello zfpx [<span class="hljs-string">&apos;A&apos;</span>,<span class="hljs-string">&apos;B&apos;</span>,<span class="hljs-string">&apos;C&apos;</span>]
+</code></pre>
+<h3 id="t51.5 &#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x7684;&#x914D;&#x7F6E;">1.5 &#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x7684;&#x914D;&#x7F6E; <a href="#t51.5 &#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x7684;&#x914D;&#x7F6E;"> # </a></h3>
+<ul>
+<li>demand &#x662F;&#x5426;&#x5FC5;&#x9009;</li>
+<li>default &#x9ED8;&#x8BA4;&#x503C;</li>
+<li>describe &#x63D0;&#x793A;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>)
+  .demand([<span class="hljs-string">&apos;n&apos;</span>])
+  .default({<span class="hljs-attr">n</span>:<span class="hljs-string">&apos;zfpx&apos;</span>})
+  .describe({<span class="hljs-attr">n</span>:<span class="hljs-string">&quot;&#x4F60;&#x7684;&#x540D;&#x5B57;&quot;</span>})
+  .argv;
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello &apos;</span>,argv.n);
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x4EE3;&#x8868;n&#x4E0D;&#x80FD;&#x7701;&#x7565;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;zfpx,&#x5E76;&#x7ED9;&#x51FA;&#x63D0;&#x793A;</p>
+<p>option&#x65B9;&#x6CD5;&#x5141;&#x8BB8;&#x5C06;&#x6240;&#x6709;&#x7684;&#x914D;&#x7F6E;&#x5199;&#x5165;&#x914D;&#x7F6E;&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>)
+.option(<span class="hljs-string">&apos;n&apos;</span>,{
+    <span class="hljs-attr">alias</span>:<span class="hljs-string">&apos;name&apos;</span>,
+    <span class="hljs-attr">demand</span>:<span class="hljs-literal">true</span>,
+    <span class="hljs-attr">default</span>:<span class="hljs-string">&apos;zfpx&apos;</span>,
+    <span class="hljs-attr">describe</span>:<span class="hljs-string">&apos;&#x8BF7;&#x8F93;&#x5165;&#x4F60;&#x7684;&#x540D;&#x5B57;&apos;</span>,
+    <span class="hljs-attr">type</span>:<span class="hljs-string">&apos;string&apos;</span>,
+    <span class="hljs-attr">boolean</span>:<span class="hljs-literal">true</span>
+}).argv
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello&apos;</span>,argv.n);
+</code></pre>
+<p>&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x67D0;&#x4E9B;&#x53C2;&#x6570;&#x4E0D;&#x9700;&#x8981;&#xFF0C;&#x53EA;&#x8D77;&#x5230;&#x5F00;&#x5173;&#x4F5C;&#x7528;&#x3002;&#x53EF;&#x4EE5;&#x7528;boolean&#x6307;&#x5B9A;&#x8FD9;&#x4E9B;&#x53C2;&#x6570;&#x8FD4;&#x56DE;&#x5E03;&#x5C14;&#x503C;</p>
+<pre><code class="lang-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>)
+    .boolean([<span class="hljs-string">&apos;private&apos;</span>])
+    .argv
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hello&apos;</span>,argv.n);
+</code></pre>
+<p>&#x53C2;&#x6570;private&#x603B;&#x662F;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x503C;</p>
+<pre><code class="lang-javascript">hello 
+<span class="hljs-literal">false</span>
+hello -private
+<span class="hljs-literal">true</span>
+hello -private zfpx   
+<span class="hljs-literal">true</span>
+</code></pre>
+<h3 id="t61.6 &#x5E2E;&#x52A9;&#x4FE1;&#x606F;">1.6 &#x5E2E;&#x52A9;&#x4FE1;&#x606F; <a href="#t61.6 &#x5E2E;&#x52A9;&#x4FE1;&#x606F;"> # </a></h3>
+<p>yargs&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#xFF0C;&#x751F;&#x6210;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</p>
+<ul>
+<li>usage &#x7528;&#x6CD5;&#x683C;&#x5F0F;</li>
+<li>example &#x63D0;&#x4F9B;&#x4F8B;&#x5B50;</li>
+<li>help &#x663E;&#x793A;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;</li>
+<li>epilog &#x51FA;&#x73B0;&#x5728;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#x7684;&#x7ED3;&#x5C3E;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">let</span> argv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;argv&apos;</span>)
+  .option(<span class="hljs-string">&apos;n&apos;</span>,{
+      <span class="hljs-attr">alias</span>:<span class="hljs-string">&apos;name&apos;</span>,
+      <span class="hljs-attr">demand</span>:<span class="hljs-literal">true</span>,
+      <span class="hljs-attr">default</span>:<span class="hljs-string">&apos;tom&apos;</span>,
+      <span class="hljs-attr">describe</span>:<span class="hljs-string">&apos;&#x4F60;&#x7684;&#x540D;&#x5B57;&apos;</span>,
+      <span class="hljs-attr">type</span>:<span class="hljs-string">&apos;string&apos;</span>
+  })
+  .usage(<span class="hljs-string">&apos;Usage: hello [options]&apos;</span>)
+  .example(<span class="hljs-string">&apos;hello -n zfpx&apos;</span>,<span class="hljs-string">&apos;say hello to zfpx&apos;</span>)
+  .help(<span class="hljs-string">&apos;h&apos;</span>)
+  .alias(<span class="hljs-string">&apos;h&apos;</span>,<span class="hljs-string">&apos;help&apos;</span>)
+  .epilog(<span class="hljs-string">&apos;copyright 2018&apos;</span>)
+  .argv
+</code></pre>
+
+        <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
+    </div>
+    
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script>
+$('.warpper .page-toc ul ul li a').on('click',function(){
+  $('.warpper .page-toc ul ul li a').removeClass('my-active')
+  $(this).addClass('my-active')
+})
+  // if (!$('.understand-me').length) {
+  //   var bar = $(window).height() - $('.navbar ').height() - $('.page-toc').position().top;
+  //   var count = bar / 26 / 2;
+  //   var barHeight = $('.page-toc').outerHeight();
+  //   $('.page-toc li').eq(0).children('a').addClass('red');
+  //   var arr = [];
+  //   $("h1,h2,h3,h4,h5,h6").each(function () {
+  //     arr.push($(this).position().top);
+  //   });
+  //   var timer
+  //   function dark() {
+  //     clearTimeout(timer)
+  //      timer = setTimeout(function () {
+  //      var top = Math.abs($('.page-toc > ul').position().top);
+  //      var cur = $('.content').scrollTop();
+  //      for (var i = arr.length; i >= 0; i--) {
+  //        if (arr[i] <= cur) {
+  //          break;
+  //        }
+  //      }
+  //      if (i === -1) {
+  //        i = 0;
+  //      }
+  //      $('.page-toc li a').removeClass('red');
+  //      $('.page-toc li').eq(i).children('a').addClass('red');
+  //      let height = $('.page-toc li').eq(i).position().top-$('.page-toc').height(); // 如果当前的offset出去了 回到中间可好？
+  //      $('.page-toc').scrollTop(height+$('.page-toc').height()/2);
+  //    },200)
+  //   }
+
+  //   $('.content').on('scroll', dark);
+  // }
+</script>
+<style>
+
+    /* ::-webkit-scrollbar{width:14px;}
+    ::-webkit-scrollbar-track{background-color:transparent;}
+    ::-webkit-scrollbar-thumb{background-color:transparent;}
+    ::-webkit-scrollbar-thumb:hover {background-color:transparent}
+    ::-webkit-scrollbar-thumb:active {background-color:transparent} */
+
+    .page-toc > ul .red {
+        background: #f3f3f3;
+        z-index: 1;
+        border-left: 3px solid #009a61;
+        -webkit-transition: all .2s ease;
+        transition: all .2s ease;
+        color: #000
+    }
+
+
+
+
+
+</style>
+</body>
+</html>
