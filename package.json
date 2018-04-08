@@ -34,8 +34,11 @@
             "16.Stream-4.md",
             "17.tcp.md",
             "18.http-1.md",
-            "19.yargs.md",
-            "20.action.md"
+            "19.action.md",
+            "20.Resume breakpoint.md",
+            "21.crypto.md",
+            "22.cache.md",
+            "23.yargs.md"
         ]
     }
 }
