@@ -40,7 +40,8 @@
             "22.cache.md",
             "23.yargs.md",
             "24.process.md",
-            "25.compress.md"
+            "25.compress.md",
+            "26.koa.md"
         ]
     }
 }
