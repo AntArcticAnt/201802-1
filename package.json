@@ -41,7 +41,8 @@
             "23.yargs.md",
             "24.process.md",
             "25.compress.md",
-            "26.koa.md"
+            "26.koa.md",
+            "27.webpack.md"
         ]
     }
 }
