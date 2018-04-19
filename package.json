@@ -42,7 +42,8 @@
             "24.process.md",
             "25.compress.md",
             "26.koa.md",
-            "27.webpack.md"
+            "27.webpack.md",
+            "28.webpack-2.md"
         ]
     }
 }
