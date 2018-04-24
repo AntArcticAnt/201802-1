@@ -43,7 +43,8 @@
             "25.compress.md",
             "26.koa.md",
             "27.webpack.md",
-            "28.webpack-2.md"
+            "28.webpack-2.md",
+            "React-1.md"
         ]
     }
 }
