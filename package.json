@@ -46,7 +46,11 @@
             "28.webpack-2.md",
             "29.React-1.md",
             "MVVM.md",
-            "README.md"
+            "README.md",
+            "30.cookie.md",
+            "31.session.md",
+            "32.express-1.md",
+            "33.express-2.md"
         ]
     }
 }
